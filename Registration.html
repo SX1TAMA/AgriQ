@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- CHANGE TEXT HERE: Page title shown in browser tab -->
+  <title>Register – FarmConnect</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'farm-green':       '#2D6A4F',
+            'farm-green-mid':   '#52B788',
+            'farm-green-light': '#D8F3DC',
+            'farm-earth':       '#7D5A3C',
+            'farm-earth-light': '#C9A97A',
+            'farm-cream':       '#F8F4EE',
+            'farm-bark':        '#4A3728',
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: "Segoe UI", system-ui, sans-serif; }
+    h1, h2, h3, h4 { font-family: Georgia, serif; }
+
+    /* Focus ring colour consistent with brand */
+    input:focus, select:focus {
+      outline: 2px solid #52B788;
+      outline-offset: 2px;
+    }
+
+    /* Subtle page background pattern */
+    .page-bg {
+      background-color: #F8F4EE;
+      background-image:
+        radial-gradient(circle at 10% 20%, rgba(82,183,136,0.10) 0%, transparent 50%),
+        radial-gradient(circle at 90% 80%, rgba(201,169,122,0.10) 0%, transparent 50%);
+    }
+  </style>
+</head>
+<body class="page-bg min-h-screen text-farm-bark antialiased">
+
+  <!-- ============================================================
+       NAVIGATION BAR (same as AgriQ.html)
+  ============================================================ -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-farm-green-light shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+
+      <!-- CHANGE TEXT HERE: Logo / brand name -->
+      <a href="AgriQ.html" class="flex items-center gap-2 text-farm-green font-bold text-xl tracking-tight" style="font-family:Georgia,serif;">
+        🌿 FarmConnect
+      </a>
+
+      <!-- Desktop nav links -->
+      <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-farm-bark">
+        <!-- CHANGE TEXT HERE: Nav link labels -->
+        <a href="AgriQ.html"    class="hover:text-farm-green transition-colors">Home</a>
+        <a href="Registration.html" class="text-farm-green font-semibold border-b-2 border-farm-green pb-0.5">Register</a>
+        <a href="booking.html"  class="hover:text-farm-green transition-colors">Book Slot</a>
+        <a href="queue.html"    class="hover:text-farm-green transition-colors">Queue Status</a>
+      </nav>
+
+      <!-- Login button + mobile hamburger -->
+      <div class="flex items-center gap-3">
+        <!-- CHANGE TEXT HERE: Login button label -->
+        <button id="login-btn" class="px-4 py-2 rounded-lg border-2 border-farm-green text-farm-green text-sm font-semibold hover:bg-farm-green hover:text-white transition-colors">
+            LOGIN
+        </button>
+
+        <label for="mobile-menu-toggle" class="md:hidden cursor-pointer p-1 text-farm-green">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="3" y1="6"  x2="21" y2="6"/>
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </label>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <input type="checkbox" id="mobile-menu-toggle" class="hidden peer" />
+    <nav class="md:hidden hidden peer-checked:block bg-white border-t border-farm-green-light px-5 py-4 space-y-3 text-sm font-medium text-farm-bark">
+      <!-- CHANGE TEXT HERE: Mobile nav link labels -->
+      <a href="AgriQ.html"    class="block hover:text-farm-green">Home</a>
+      <a href="Registration.html" class="block text-farm-green font-semibold">Register</a>
+      <a href="booking.html"  class="block hover:text-farm-green">Book Slot</a>
+      <a href="queue.html"    class="block hover:text-farm-green">Queue Status</a>
+    </nav>
+  </header>
+
+
+  <!-- ============================================================
+       MAIN CONTENT – Registration card
+  ============================================================ -->
+  <main class="flex items-start justify-center min-h-[calc(100vh-4rem)] py-12 px-4 sm:px-6">
+
+    <div class="w-full max-w-lg">
+
+      <!-- Card -->
+      <div class="bg-white rounded-2xl shadow-lg border border-farm-green-light overflow-hidden">
+
+        <!-- Card header band -->
+        <div class="bg-farm-green px-8 py-6">
+          <!-- CHANGE TEXT HERE: Card header title -->
+          <h1 class="text-2xl sm:text-3xl font-bold text-white flex items-center gap-2">
+            🌱 Farmer Registration
+          </h1>
+          <!-- CHANGE TEXT HERE: Card header subtitle -->
+          <p class="text-farm-green-light/80 text-sm mt-1">Fill in your details to get started with FarmConnect.</p>
+        </div>
+
+        <!-- Form body -->
+        <div class="px-8 py-8">
+          <form id="Registration" action="#" method="POST" novalidate>
+
+            <!-- ── Field 1: Full Name ── -->
+            <div class="mb-5">
+              <!-- CHANGE LABEL/TEXT HERE -->
+              <label for="farmerName" class="block text-sm font-semibold text-farm-bark mb-1.5">
+                Full Name <span class="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                id="farmerName"
+                name="farmerName"
+                placeholder="e.g. Ramesh Kumar"
+                required
+                class="w-full rounded-lg border border-gray-300 bg-farm-cream/50 px-4 py-2.5 text-sm text-farm-bark placeholder-gray-400 transition-colors hover:border-farm-green-mid"
+              />
+              <!-- CHANGE TEXT HERE: Validation hint -->
+              <p class="text-xs text-gray-400 mt-1">Enter your full name as on official documents.</p>
+            </div>
+
+            <!-- ── Field 2: Phone Number ── -->
+            <div class="mb-5">
+              <!-- CHANGE LABEL/TEXT HERE -->
+              <label for="farmerPhone" class="block text-sm font-semibold text-farm-bark mb-1.5">
+                Phone Number <span class="text-red-500">*</span>
+              </label>
+              <div class="flex rounded-lg border border-gray-300 bg-farm-cream/50 overflow-hidden hover:border-farm-green-mid transition-colors focus-within:outline focus-within:outline-2 focus-within:outline-farm-green-mid">
+                <!-- Country code prefix -->
+                <span class="flex items-center px-3 text-sm text-gray-500 bg-gray-100 border-r border-gray-300 shrink-0">🇮🇳 +91</span>
+                <input
+                  type="tel"
+                  id="farmerPhone"
+                  name="farmerPhone"
+                  placeholder="98765 43210"
+                  required
+                  pattern="[6-9][0-9]{9}"
+                  maxlength="10"
+                  class="flex-1 bg-transparent px-3 py-2.5 text-sm text-farm-bark placeholder-gray-400 focus:outline-none"
+                />
+              </div>
+              <!-- CHANGE TEXT HERE: Validation hint -->
+              <p class="text-xs text-gray-400 mt-1">10-digit mobile number, starting with 6–9.</p>
+            </div>
+
+            <!-- ── Field 3: Village / Town ── -->
+            <div class="mb-5">
+              <!-- CHANGE LABEL/TEXT HERE -->
+              <label for="farmerVillage" class="block text-sm font-semibold text-farm-bark mb-1.5">
+                Village / Town <span class="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                id="farmerVillage"
+                name="farmerVillage"
+                placeholder="e.g. Sonipat"
+                required
+                class="w-full rounded-lg border border-gray-300 bg-farm-cream/50 px-4 py-2.5 text-sm text-farm-bark placeholder-gray-400 transition-colors hover:border-farm-green-mid"
+              />
+              <!-- CHANGE TEXT HERE: Validation hint -->
+              <p class="text-xs text-gray-400 mt-1">Name of the village or town where your farm is located.</p>
+            </div>
+
+            <!-- ── Field 4: Crop Type ── -->
+<div class="mb-5">
+
+    <label for="cropType" class="block text-sm font-semibold text-farm-bark mb-1.5">
+        Crop Type <span class="text-red-500">*</span>
+    </label>
+
+    <div class="relative">
+        <select
+            id="cropType"
+            name="cropType"
+            required
+            class="w-full appearance-none rounded-lg border border-gray-300 bg-farm-cream/50 px-4 py-2.5 text-sm text-farm-bark transition-colors hover:border-farm-green-mid pr-10"
+        >
+            <option value="" disabled selected>Select your primary crop</option>
+            <option value="wheat">Wheat</option>
+            <option value="rice">Rice</option>
+            <option value="maize">Maize</option>
+            <option value="cotton">Cotton</option>
+            <option value="sugarcane">Sugarcane</option>
+            <option value="other">Other</option>
+        </select>
+
+        <!-- Custom dropdown arrow -->
+        <div class="pointer-events-none absolute inset-y-0 right-3 flex items-center">
+            <svg width="16" height="16" viewBox="0 0 24 24"
+                fill="none" stroke="#7D5A3C" stroke-width="2"
+                stroke-linecap="round">
+                <polyline points="6 9 12 15 18 9"/>
+            </svg>
+        </div>
+    </div>
+
+    <p class="text-xs text-gray-400 mt-1">
+        Choose the main crop you are bringing for procurement.
+    </p>
+
+
+    <!-- ── Other Crop Section ── -->
+    <div id="otherCropSection" class="hidden mt-5">
+
+        <label for="otherCrop" class="block text-sm font-semibold text-farm-bark mb-1.5">
+            Other <span class="text-red-500">*</span>
+        </label>
+
+        <input
+            type="text"
+            id="otherCrop"
+            name="otherCrop"
+            placeholder="Specify your crop"
+            class="w-full rounded-lg border border-gray-300 bg-farm-cream/50 px-4 py-2.5 text-sm text-farm-bark placeholder-gray-400 transition-colors hover:border-farm-green-mid"
+        />
+
+        <p class="text-xs text-gray-400 mt-1">
+            Please specify the name of your crop.
+        </p>
+
+    </div>
+
+</div>
+
+            <!-- ── Field 5: Aadhar Number (optional) ── -->
+            <div class="mb-7">
+              <!-- CHANGE LABEL/TEXT HERE -->
+             <label for="aadharNumber" class="block text-sm font-semibold text-farm-bark mb-1.5">
+                Aadhar Number <span class="text-red-500">*</span>
+              </label>
+              </label>
+              <input
+                type="text"
+                id="aadharNumber"
+                name="aadharNumber"
+                placeholder="XXXX XXXX XXXX"
+                maxlength="14"
+                pattern="[0-9\s]{12,14}"
+                class="w-full rounded-lg border border-gray-300 bg-farm-cream/50 px-4 py-2.5 text-sm text-farm-bark placeholder-gray-400 transition-colors hover:border-farm-green-mid"
+              />
+              <!-- CHANGE TEXT HERE: Validation hint -->
+              <p class="text-xs text-gray-400 mt-1">12-digit Aadhar number for identity verification is required.</p>
+              <!-- ── Field 4: Farm Location ── -->
+<div class="mb-5">
+
+    <label for="locationInput" class="block text-sm font-semibold text-farm-bark mb-1.5">
+        Farm Location <span class="text-red-500">*</span>
+    </label>
+
+    <div class="flex gap-2">
+        <input
+            type="text"
+            id="locationInput"
+            name="locationInput"
+            placeholder="Enter your farm location"
+            required
+            class="flex-1 rounded-lg border border-gray-300 bg-farm-cream/50 px-4 py-2.5 text-sm text-farm-bark placeholder-gray-400 transition-colors hover:border-farm-green-mid"
+        />
+
+        <button
+            type="button"
+            id="getLocationBtn"
+            class="px-4 py-2.5 rounded-lg bg-farm-green text-white font-semibold text-sm hover:bg-farm-earth transition-colors"
+        >
+            📍 Get Location
+        </button>
+    </div>
+
+    <p class="text-xs text-gray-400 mt-1">
+        Enter your location or click "Get Location" to use your current location.
+    </p>
+
+    <!-- Coordinates -->
+    <div id="coordinatesSection" class="hidden mt-4 p-4 rounded-lg bg-farm-green-light/50 border border-farm-green-light">
+
+        <h3 class="text-sm font-bold text-farm-green mb-3">
+            Exact Coordinates
+        </h3>
+
+        <div class="grid grid-cols-2 gap-3">
+
+            <div>
+                <label class="block text-xs font-semibold text-farm-bark mb-1">
+                    Latitude
+                </label>
+
+                <input
+                    type="text"
+                    id="latitude"
+                    name="latitude"
+                    readonly
+                    class="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-farm-bark"
+                />
+            </div>
+
+            <div>
+                <label class="block text-xs font-semibold text-farm-bark mb-1">
+                    Longitude
+                </label>
+
+                <input
+                    type="text"
+                    id="longitude"
+                    name="longitude"
+                    readonly
+                    class="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-farm-bark"
+                />
+            </div>
+
+        </div>
+
+        <p id="locationStatus" class="text-xs text-farm-green mt-3"></p>
+
+    </div>
+
+</div>
+            </div>
+
+            <!-- Required fields note -->
+            <!-- CHANGE TEXT HERE: Required fields legend -->
+            <p class="text-xs text-gray-400 mb-5"><span class="text-red-500">*</span> Required fields</p>
+
+            <!-- ── Submit button ── -->
+            <!-- CHANGE LABEL/TEXT HERE -->
+            <button
+              type="submit"
+              id="registerBtn"
+              class="w-full bg-farm-green text-white font-bold text-base py-3 rounded-xl hover:bg-farm-earth transition-colors shadow-md active:scale-95"
+            >
+              🌱 Register
+            </button>
+
+            <!-- BACKEND: form submission will go to /api/register via JavaScript -->
+
+          </form>
+
+          <!-- Already registered link -->
+          <p class="text-center text-sm text-gray-500 mt-6">
+            <!-- CHANGE TEXT HERE: Already registered prompt -->
+            Already registered?
+            <!-- CHANGE TEXT HERE: Login link label -->
+            <a id="loginLink" href="#" class="text-farm-green font-semibold hover:underline">Login here</a>
+          </p>
+
+        </div><!-- end card body -->
+      </div><!-- end card -->
+
+      <!-- Footer note below card -->
+      <!-- CHANGE TEXT HERE: Below-card privacy note -->
+      <p class="text-center text-xs text-gray-400 mt-5 px-4">
+        Your information is kept private and used only for procurement purposes.
+      </p>
+
+    </div>
+  </main>
+
+
+  <!-- ============================================================
+       PAGE FOOTER (minimal)
+  ============================================================ -->
+  <footer class="bg-farm-bark text-farm-cream/50 text-center text-xs py-5 mt-4">
+    <!-- CHANGE TEXT HERE: Copyright text -->
+    © 2024 FarmConnect. All rights reserved.
+  </footer>
+<script src="AgriQ.js"></script>
+</body>
+</html>
