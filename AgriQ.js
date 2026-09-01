@@ -11,6 +11,7 @@ document.getElementById("Registration").addEventListener("submit", async (e) => 
         farmerPhone: document.getElementById("farmerPhone").value,
         farmerVillage: document.getElementById("farmerVillage").value,
         cropType: document.getElementById("cropType").value
+        locationInput: document.getElementById("locationInput").value
     };
 
     console.log("Farmer data:", farmer);
