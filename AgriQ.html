@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- CHANGE TEXT HERE: Page title shown in browser tab -->
+  <title>FarmConnect – Simplify Your Procurement</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'farm-green':      '#2D6A4F',
+            'farm-green-mid':  '#52B788',
+            'farm-green-light':'#D8F3DC',
+            'farm-earth':      '#7D5A3C',
+            'farm-earth-light':'#C9A97A',
+            'farm-cream':      '#F8F4EE',
+            'farm-bark':       '#4A3728',
+          },
+          fontFamily: {
+            sans: ['Georgia', 'serif'],
+            body: ['"Segoe UI"', 'system-ui', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Subtle grain texture overlay on hero */
+    .hero-pattern {
+      background-color: #2D6A4F;
+      background-image:
+        radial-gradient(circle at 20% 50%, rgba(82,183,136,0.25) 0%, transparent 55%),
+        radial-gradient(circle at 80% 20%, rgba(201,169,122,0.18) 0%, transparent 45%);
+    }
+    /* Dashed step connector (desktop only) */
+    @media (min-width: 768px) {
+      .step-connector::after {
+        content: '';
+        position: absolute;
+        top: 2rem;
+        left: 66%;
+        width: 34%;
+        border-top: 2px dashed #C9A97A;
+      }
+      .step-connector:last-child::after { display: none; }
+    }
+    body { font-family: "Segoe UI", system-ui, sans-serif; }
+    h1, h2, h3 { font-family: Georgia, serif; }
+  </style>
+</head>
+<body class="bg-farm-cream text-farm-bark antialiased">
+
+  <!-- ============================================================
+       NAVIGATION BAR
+  ============================================================ -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-farm-green-light shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+
+      <!-- CHANGE TEXT HERE: Logo / brand name -->
+      <a href="AgriQ.html" class="flex items-center gap-2 text-farm-green font-bold text-xl tracking-tight" style="font-family:Georgia,serif;">
+        🌿 FarmConnect
+      </a>
+
+      <!-- Desktop nav links -->
+      <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-farm-bark">
+        <!-- CHANGE TEXT HERE: Nav link labels -->
+        <a href="AgriQ.html"   class="hover:text-farm-green transition-colors">Home</a>
+        <a href="Registration.html" class="hover:text-farm-green transition-colors">Register</a>
+        <a href="booking.html"  class="hover:text-farm-green transition-colors">Book Slot</a>
+        <a href="queue.html"    class="hover:text-farm-green transition-colors">Queue Status</a>
+      </nav>
+
+      <!-- Right side: Login button -->
+      <div class="flex items-center gap-3">
+        <!-- CHANGE TEXT HERE: Login button label -->
+        <button id="login-btn">
+         Login
+        </button>
+
+        <!-- Mobile hamburger (pure CSS toggle trick) -->
+        <label for="mobile-menu-toggle" class="md:hidden cursor-pointer p-1 text-farm-green">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="3" y1="6"  x2="21" y2="6"/>
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </label>
+      </div>
+    </div>
+
+    <!-- Mobile menu (checkbox hack) -->
+    <input type="checkbox" id="mobile-menu-toggle" class="hidden peer" />
+    <nav class="md:hidden hidden peer-checked:block bg-white border-t border-farm-green-light px-5 py-4 space-y-3 text-sm font-medium text-farm-bark">
+      <!-- CHANGE TEXT HERE: Mobile nav link labels -->
+      <a href="AgriQ.html"    class="block hover:text-farm-green">Home</a>
+      <a href="Registration.html" class="block hover:text-farm-green">Register</a>
+      <a href="booking.html"  class="block hover:text-farm-green">Book Slot</a>
+      <a href="queue.html"    class="block hover:text-farm-green">Queue Status</a>
+    </nav>
+  </header>
+
+
+  <!-- ============================================================
+       SECTION 1 – HERO
+  ============================================================ -->
+  <section class="hero-pattern text-white py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+
+    <!-- Decorative emoji scattered in background -->
+    <div class="absolute inset-0 flex flex-wrap content-around justify-around opacity-10 select-none pointer-events-none text-5xl leading-none" aria-hidden="true">
+      🌾🌾🌾🌾🌾🌾🌾🌾🌾🌾🌾🌾🌾🌾🌾🌾🌾🌾🌾🌾🌾🌾🌾🌾
+    </div>
+
+    <div class="relative max-w-3xl mx-auto text-center">
+
+      <!-- CHANGE TEXT HERE: Hero eyebrow label -->
+      <p class="inline-block bg-farm-green-mid/30 border border-farm-green-mid text-farm-green-light text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-full mb-6">
+        For Farmers · Procurement Made Simple
+      </p>
+
+      <!-- CHANGE TEXT HERE: Hero main heading -->
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-5">
+        Simplify Your<br class="hidden sm:block" /> Procurement Process
+      </h1>
+
+      <!-- CHANGE TEXT HERE: Hero subheading / description -->
+      <p class="text-lg sm:text-xl text-farm-green-light/90 max-w-xl mx-auto mb-10 leading-relaxed">
+        Reduce waiting times, get real&#8209;time updates, and manage your slots easily — from any device, anywhere.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <!-- CHANGE TEXT HERE: Primary CTA button label -->
+        <a id="hero-register-btn"
+           href="Registration.html"
+           class="inline-block bg-farm-earth-light text-farm-bark font-bold px-7 py-3.5 rounded-xl hover:bg-white hover:text-farm-green transition-colors shadow-lg text-base">
+          Register as Farmer
+        </a>
+
+        <!-- CHANGE TEXT HERE: Secondary CTA button label -->
+        <a id="hero-book-btn"
+           href="booking.html"
+           class="inline-block border-2 border-white/70 text-white font-bold px-7 py-3.5 rounded-xl hover:bg-white hover:text-farm-green transition-colors text-base">
+          Book a Slot
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 2 – FEATURES (3 cards)
+  ============================================================ -->
+  <section class="py-20 px-4 sm:px-6 lg:px-8 bg-farm-cream">
+    <div class="max-w-6xl mx-auto">
+
+      <div class="text-center mb-14">
+        <!-- CHANGE TEXT HERE: Features section heading -->
+        <h2 class="text-3xl sm:text-4xl font-bold text-farm-green mb-3">Everything a Farmer Needs</h2>
+        <!-- CHANGE TEXT HERE: Features section subheading -->
+        <p class="text-farm-earth max-w-xl mx-auto">Three tools that remove the friction from crop procurement — so you spend less time waiting and more time farming.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+        <!-- Feature Card 1 -->
+        <div class="bg-white rounded-2xl p-8 border border-farm-green-light shadow-sm hover:shadow-md transition-shadow">
+          <!-- CHANGE TEXT HERE: Card 1 emoji icon -->
+          <div class="text-4xl mb-4">📝</div>
+          <!-- CHANGE TEXT HERE: Card 1 title -->
+          <h3 class="text-xl font-bold text-farm-green mb-2">Easy Registration</h3>
+          <!-- CHANGE TEXT HERE: Card 1 description -->
+          <p class="text-farm-bark/80 leading-relaxed text-sm">Fill a simple form to register as a farmer in minutes. No paperwork, no long queues at the office.</p>
+        </div>
+
+        <!-- Feature Card 2 -->
+        <div class="bg-white rounded-2xl p-8 border border-farm-green-light shadow-sm hover:shadow-md transition-shadow">
+          <!-- CHANGE TEXT HERE: Card 2 emoji icon -->
+          <div class="text-4xl mb-4">📅</div>
+          <!-- CHANGE TEXT HERE: Card 2 title -->
+          <h3 class="text-xl font-bold text-farm-green mb-2">Slot Booking</h3>
+          <!-- CHANGE TEXT HERE: Card 2 description -->
+          <p class="text-farm-bark/80 leading-relaxed text-sm">Choose a convenient time slot for crop procurement and avoid long queues at the centre.</p>
+        </div>
+
+        <!-- Feature Card 3 -->
+        <div class="bg-white rounded-2xl p-8 border border-farm-green-light shadow-sm hover:shadow-md transition-shadow">
+          <!-- CHANGE TEXT HERE: Card 3 emoji icon -->
+          <div class="text-4xl mb-4">🔔</div>
+          <!-- CHANGE TEXT HERE: Card 3 title -->
+          <h3 class="text-xl font-bold text-farm-green mb-2">Real&#8209;time Notifications</h3>
+          <!-- CHANGE TEXT HERE: Card 3 description -->
+          <p class="text-farm-bark/80 leading-relaxed text-sm">Get SMS and in&#8209;app updates about your booking status and queue position as they change.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 3 – HOW IT WORKS (3 steps)
+  ============================================================ -->
+  <section class="py-20 px-4 sm:px-6 lg:px-8 bg-farm-green-light/40">
+    <div class="max-w-6xl mx-auto">
+
+      <div class="text-center mb-14">
+        <!-- CHANGE TEXT HERE: How It Works section heading -->
+        <h2 class="text-3xl sm:text-4xl font-bold text-farm-green mb-3">How It Works</h2>
+        <!-- CHANGE TEXT HERE: How It Works section subheading -->
+        <p class="text-farm-earth max-w-md mx-auto">Get started in three straightforward steps — no technical knowledge required.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-6 relative">
+
+        <!-- Step 1 -->
+        <div class="relative step-connector flex flex-col items-center text-center">
+          <!-- CHANGE TEXT HERE: Step 1 number -->
+          <div class="w-16 h-16 rounded-full bg-farm-green text-white flex items-center justify-center text-3xl font-bold mb-5 shadow-md" style="font-family:Georgia,serif;">
+            1
+          </div>
+          <!-- CHANGE TEXT HERE: Step 1 title -->
+          <h3 class="text-lg font-bold text-farm-bark mb-2">Register with your details</h3>
+          <!-- CHANGE TEXT HERE: Step 1 description -->
+          <p class="text-farm-bark/70 text-sm max-w-xs leading-relaxed">Create your farmer profile with basic information like name, location, and the crops you grow.</p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="relative step-connector flex flex-col items-center text-center">
+          <!-- CHANGE TEXT HERE: Step 2 number -->
+          <div class="w-16 h-16 rounded-full bg-farm-green text-white flex items-center justify-center text-3xl font-bold mb-5 shadow-md" style="font-family:Georgia,serif;">
+            2
+          </div>
+          <!-- CHANGE TEXT HERE: Step 2 title -->
+          <h3 class="text-lg font-bold text-farm-bark mb-2">Book a procurement slot</h3>
+          <!-- CHANGE TEXT HERE: Step 2 description -->
+          <p class="text-farm-bark/70 text-sm max-w-xs leading-relaxed">Browse available time slots at your nearest centre and book the one that suits your schedule.</p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="relative flex flex-col items-center text-center">
+          <!-- CHANGE TEXT HERE: Step 3 number -->
+          <div class="w-16 h-16 rounded-full bg-farm-earth text-white flex items-center justify-center text-3xl font-bold mb-5 shadow-md" style="font-family:Georgia,serif;">
+            3
+          </div>
+          <!-- CHANGE TEXT HERE: Step 3 title -->
+          <h3 class="text-lg font-bold text-farm-bark mb-2">Receive SMS confirmation and track queue</h3>
+          <!-- CHANGE TEXT HERE: Step 3 description -->
+          <p class="text-farm-bark/70 text-sm max-w-xs leading-relaxed">Get an instant SMS when your booking is confirmed. Track your live queue position right from your phone.</p>
+        </div>
+
+      </div>
+
+      <!-- CTA below steps -->
+      <div class="mt-14 text-center">
+        <!-- CHANGE TEXT HERE: Steps section CTA button label -->
+        <a id="get-started-btn" href="Registration.html" class="inline-block bg-farm-green text-white font-bold px-8 py-3.5 rounded-xl hover:bg-farm-earth transition-colors shadow-md text-base">
+        Get Started — It's Free
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="bg-farm-bark text-farm-cream pt-14 pb-6 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-10 mb-10">
+
+      <!-- Column 1: About -->
+      <div>
+        <!-- CHANGE TEXT HERE: Footer about heading -->
+        <h4 class="font-bold text-farm-earth-light text-base mb-3" style="font-family:Georgia,serif;">About</h4>
+        <!-- CHANGE TEXT HERE: Footer about description -->
+        <p class="text-farm-cream/70 text-sm leading-relaxed">
+          FarmConnect is a digital procurement platform that helps farmers register, book crop delivery slots, and track queue status — reducing wait times and boosting efficiency.
+        </p>
+      </div>
+
+      <!-- Column 2: Contact -->
+      <div>
+        <!-- CHANGE TEXT HERE: Footer contact heading -->
+        <h4 class="font-bold text-farm-earth-light text-base mb-3" style="font-family:Georgia,serif;">Contact</h4>
+        <ul class="text-farm-cream/70 text-sm space-y-2">
+          <li class="flex items-start gap-2">
+            <!-- Email icon -->
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mt-0.5 shrink-0 text-farm-earth-light"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+            <!-- CHANGE TEXT HERE: Footer contact email -->
+            <a href="mailto:support@farmconnect.in" class="hover:text-white transition-colors">support@farmconnect.in</a>
+          </li>
+          <li class="flex items-start gap-2">
+            <!-- Phone icon -->
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mt-0.5 shrink-0 text-farm-earth-light"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1.8.4 1.5.7 2.2a2 2 0 0 1-.5 2.1L8 9.1a16 16 0 0 0 6 6l1.1-1.1a2 2 0 0 1 2.1-.5c.7.3 1.4.5 2.2.7A2 2 0 0 1 22 16.9z"/></svg>
+            <!-- CHANGE TEXT HERE: Footer contact phone -->
+            <a href="tel:+911234567890" class="hover:text-white transition-colors">+91 12345 67890</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Follow Us -->
+      <div>
+        <!-- CHANGE TEXT HERE: Footer social heading -->
+        <h4 class="font-bold text-farm-earth-light text-base mb-3" style="font-family:Georgia,serif;">Follow Us</h4>
+        <div class="flex flex-col gap-2 text-sm">
+
+          <!-- CHANGE TEXT HERE: Social link labels and href="#" destinations -->
+          <a href="#" class="flex items-center gap-2 text-farm-cream/70 hover:text-white transition-colors group">
+            <span class="w-7 h-7 rounded-full bg-white/10 group-hover:bg-farm-green flex items-center justify-center transition-colors text-xs">
+              <!-- Facebook placeholder icon -->
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </span>
+            Facebook
+          </a>
+
+          <a href="#" class="flex items-center gap-2 text-farm-cream/70 hover:text-white transition-colors group">
+            <span class="w-7 h-7 rounded-full bg-white/10 group-hover:bg-farm-green flex items-center justify-center transition-colors text-xs">
+              <!-- Twitter/X placeholder icon -->
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M4 4l16 16M20 4 4 20" stroke="currentColor" stroke-width="2" fill="none"/><path d="M2 4h6l14 16h-6z"/></svg>
+            </span>
+            Twitter / X
+          </a>
+
+          <a href="#" class="flex items-center gap-2 text-farm-cream/70 hover:text-white transition-colors group">
+            <span class="w-7 h-7 rounded-full bg-white/10 group-hover:bg-farm-green flex items-center justify-center transition-colors text-xs">
+              <!-- Instagram placeholder icon -->
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
+            </span>
+            Instagram
+          </a>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom copyright bar -->
+    <div class="border-t border-farm-cream/10 pt-5 text-center">
+      <!-- CHANGE TEXT HERE: Copyright text -->
+      <p class="text-farm-cream/40 text-xs">© 2024 FarmConnect. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
