@@ -1,5 +1,6 @@
 # AgriQ
 This is AgriQ, a smart automation software which going to solve the problem of many farmers related to procurement 
+<<<<<<< HEAD
 # 🌾 AgriQ
 
 ### Smart Queues for Efficient Farmer Procurement
@@ -62,3 +63,5 @@ At the same time, authorities can monitor procurement centers, manage queues, tr
 📊 Status Update
           ↓
 ✅ Completed
+=======
+>>>>>>> 15fe6025405f13d6bbbdfa0ecd927b9bb5d92141
