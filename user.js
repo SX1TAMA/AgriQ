@@ -138,3 +138,4 @@ form.addEventListener("submit", function (event) {
     form.reset();
 
 });
+fuck ur name fuck your game
