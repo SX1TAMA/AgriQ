@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Book a Slot – FarmConnect</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'farm-green':       '#2D6A4F',
+            'farm-green-mid':   '#52B788',
+            'farm-green-light': '#D8F3DC',
+            'farm-earth':       '#7D5A3C',
+            'farm-earth-light': '#C9A97A',
+            'farm-cream':       '#F8F4EE',
+            'farm-bark':        '#4A3728',
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: "Segoe UI", system-ui, sans-serif;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: Georgia, serif;
+    }
+
+    .page-bg {
+      background-color: #F8F4EE;
+      background-image:
+        radial-gradient(
+          circle at 10% 20%,
+          rgba(82,183,136,0.10) 0%,
+          transparent 50%
+        ),
+        radial-gradient(
+          circle at 90% 80%,
+          rgba(201,169,122,0.10) 0%,
+          transparent 50%
+        );
+    }
+
+    /* Available slot hover */
+    .slot-available:hover {
+      background-color: #1B4332;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(45,106,79,0.30);
+    }
+
+    /* Selected slot ring */
+    .slot-selected {
+      background-color: #1B4332 !important;
+      outline: 3px solid #C9A97A;
+      outline-offset: 2px;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(45,106,79,0.40);
+    }
+
+    /* Confirmation area slide-in */
+    #confirmation {
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    #confirmation.hidden-init {
+      opacity: 0;
+      transform: translateY(8px);
+      pointer-events: none;
+    }
+
+    #confirmation.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    input[type="date"]:focus,
+    select:focus {
+      outline: 2px solid #52B788;
+      outline-offset: 2px;
+    }
+  </style>
+</head>
+
+<body class="page-bg min-h-screen text-farm-bark antialiased">
+
+  <!-- ============================================================
+       NAVIGATION BAR
+  ============================================================ -->
+
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-farm-green-light shadow-sm">
+
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+
+      <!-- Logo -->
+      <a
+        href="AgriQ.html"
+        class="flex items-center gap-2 text-farm-green font-bold text-xl tracking-tight"
+        style="font-family:Georgia,serif;"
+      >
+        🌿 FarmConnect
+      </a>
+
+      <!-- Desktop nav -->
+      <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-farm-bark">
+
+        <a
+          href="AgriQ.html"
+          class="hover:text-farm-green transition-colors"
+        >
+          Home
+        </a>
+
+        <a
+          href="Registration.html"
+          class="hover:text-farm-green transition-colors"
+        >
+          Register
+        </a>
+
+        <a
+          href="Booking.html"
+          class="text-farm-green font-semibold border-b-2 border-farm-green pb-0.5"
+        >
+          Book Slot
+        </a>
+
+        <a
+          href="Queue.html"
+          class="hover:text-farm-green transition-colors"
+        >
+          Queue Status
+        </a>
+
+      </nav>
+
+      <div class="flex items-center gap-3">
+
+        <!-- Login button -->
+        <button
+          class="px-4 py-2 rounded-lg border-2 border-farm-green text-farm-green text-sm font-semibold hover:bg-farm-green hover:text-white transition-colors"
+        >
+          Login
+        </button>
+
+        <!-- Mobile menu button -->
+        <label
+          for="mobile-menu-toggle"
+          class="md:hidden cursor-pointer p-1 text-farm-green"
+        >
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          >
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </label>
+
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <input
+      type="checkbox"
+      id="mobile-menu-toggle"
+      class="hidden peer"
+    />
+
+    <nav
+      class="md:hidden hidden peer-checked:block bg-white border-t border-farm-green-light px-5 py-4 space-y-3 text-sm font-medium text-farm-bark"
+    >
+      <a href="AgriQ.html" class="block hover:text-farm-green">
+        Home
+      </a>
+
+      <a href="Registration.html" class="block hover:text-farm-green">
+        Register
+      </a>
+
+      <a href="Booking.html" class="block text-farm-green font-semibold">
+        Book Slot
+      </a>
+
+      <a href="Queue.html" class="block hover:text-farm-green">
+        Queue Status
+      </a>
+    </nav>
+
+  </header>
+
+
+  <!-- ============================================================
+       MAIN CONTENT
+  ============================================================ -->
+
+  <main class="max-w-2xl mx-auto px-4 sm:px-6 py-12">
+
+    <!-- Page heading -->
+    <div class="text-center mb-10">
+
+      <h1 class="text-3xl sm:text-4xl font-bold text-farm-green mb-2">
+        📅 Book a Procurement Slot
+      </h1>
+
+      <p class="text-farm-earth text-sm sm:text-base max-w-md mx-auto">
+        Select a date, crop type and choose an available time slot for your crop drop-off.
+      </p>
+
+    </div>
+
+
+    <!-- Card wrapper -->
+    <div class="bg-white rounded-2xl shadow-lg border border-farm-green-light overflow-hidden">
+
+      <!-- Card header -->
+      <div class="bg-farm-green px-6 py-4 flex items-center gap-2">
+
+        <svg
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="#D8F3DC"
+          stroke-width="2"
+          stroke-linecap="round"
+        >
+          <rect x="3" y="4" width="18" height="18" rx="2"/>
+          <line x1="16" y1="2" x2="16" y2="6"/>
+          <line x1="8" y1="2" x2="8" y2="6"/>
+          <line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+
+        <span class="text-farm-green-light text-sm font-semibold tracking-wide">
+          Step 1 — Choose a date, crop &amp; time
+        </span>
+
+      </div>
+
+
+      <div class="px-6 py-7">
+
+        <!-- ======================================================
+             DATE PICKER
+        ======================================================= -->
+
+        <div class="mb-8">
+
+          <label
+            for="bookingDate"
+            class="block text-sm font-semibold text-farm-bark mb-1.5"
+          >
+            Select Date <span class="text-red-500">*</span>
+          </label>
+
+          <input
+            type="date"
+            id="bookingDate"
+            name="bookingDate"
+            required
+            class="rounded-lg border border-gray-300 bg-farm-cream/50 px-4 py-2.5 text-sm text-farm-bark w-full sm:w-auto transition-colors hover:border-farm-green-mid"
+          />
+
+          <p class="text-xs text-gray-400 mt-1">
+            Slots shown are for the selected date. Peak hours fill quickly.
+          </p>
+
+        </div>
+
+
+        <!-- ======================================================
+             CROP TYPE — ADDED BELOW DATE
+        ======================================================= -->
+
+        <div class="mb-8">
+
+          <label
+            for="cropType"
+            class="block text-sm font-semibold text-farm-bark mb-1.5"
+          >
+            Select Crop <span class="text-red-500">*</span>
+          </label>
+
+          <select
+            id="cropType"
+            name="cropType"
+            required
+            class="rounded-lg border border-gray-300 bg-farm-cream/50 px-4 py-2.5 text-sm text-farm-bark w-full transition-colors hover:border-farm-green-mid focus:outline-none focus:ring-2 focus:ring-farm-green-mid"
+          >
+
+            <option value="" disabled selected>
+              Select your crop
+            </option>
+
+            <option value="wheat">
+              Wheat
+            </option>
+
+            <option value="rice">
+              Rice
+            </option>
+
+            <option value="maize">
+              Maize
+            </option>
+
+            <option value="cotton">
+              Cotton
+            </option>
+
+            <option value="sugarcane">
+              Sugarcane
+            </option>
+
+            <option value="other">
+              Other
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <!-- ======================================================
+             SLOT LEGEND
+        ======================================================= -->
+
+        <div class="flex items-center gap-5 mb-5 text-xs font-medium">
+
+          <span class="flex items-center gap-1.5">
+            <span class="w-3.5 h-3.5 rounded-sm bg-farm-green inline-block"></span>
+            Available
+          </span>
+
+          <span class="flex items-center gap-1.5">
+            <span class="w-3.5 h-3.5 rounded-sm bg-gray-300 inline-block"></span>
+            Booked
+          </span>
+
+          <span class="flex items-center gap-1.5">
+            <span class="w-3.5 h-3.5 rounded-sm bg-farm-bark inline-block outline outline-2 outline-farm-earth-light outline-offset-1"></span>
+            Selected
+          </span>
+
+        </div>
+
+
+        <!-- ======================================================
+             TIME SLOT GRID
+        ======================================================= -->
+
+        <div
+          id="slotGrid"
+          class="grid grid-cols-2 sm:grid-cols-3 gap-3"
+          role="group"
+          aria-label="Available time slots"
+        >
+
+          <!-- 8:00 AM -->
+          <button
+            id="slot-0800"
+            data-time="8:00 AM"
+            class="slot-available bg-farm-green text-white font-semibold text-sm rounded-xl px-4 py-3 transition-all duration-150 text-left"
+          >
+            <span class="block text-base">
+              8:00 AM
+            </span>
+
+            <span class="text-xs text-farm-green-light/80 font-normal">
+              Available
+            </span>
+          </button>
+
+
+          <!-- 9:00 AM -->
+          <button
+            id="slot-0900"
+            data-time="9:00 AM"
+            disabled
+            class="slot-booked bg-gray-200 text-gray-400 font-semibold text-sm rounded-xl px-4 py-3 cursor-not-allowed text-left"
+          >
+            <span class="block text-base line-through">
+              9:00 AM
+            </span>
+
+            <span class="text-xs font-normal">
+              Booked
+            </span>
+          </button>
+
+
+          <!-- 10:00 AM -->
+          <button
+            id="slot-1000"
+            data-time="10:00 AM"
+            class="slot-available bg-farm-green text-white font-semibold text-sm rounded-xl px-4 py-3 transition-all duration-150 text-left"
+          >
+            <span class="block text-base">
+              10:00 AM
+            </span>
+
+            <span class="text-xs text-farm-green-light/80 font-normal">
+              Available
+            </span>
+          </button>
+
+
+          <!-- 11:00 AM -->
+          <button
+            id="slot-1100"
+            data-time="11:00 AM"
+            disabled
+            class="slot-booked bg-gray-200 text-gray-400 font-semibold text-sm rounded-xl px-4 py-3 cursor-not-allowed text-left"
+          >
+            <span class="block text-base line-through">
+              11:00 AM
+            </span>
+
+            <span class="text-xs font-normal">
+              Booked
+            </span>
+          </button>
+
+
+          <!-- 12:00 PM -->
+          <button
+            id="slot-1200"
+            data-time="12:00 PM"
+            class="slot-available bg-farm-green text-white font-semibold text-sm rounded-xl px-4 py-3 transition-all duration-150 text-left"
+          >
+            <span class="block text-base">
+              12:00 PM
+            </span>
+
+            <span class="text-xs text-farm-green-light/80 font-normal">
+              Available
+            </span>
+          </button>
+
+
+          <!-- 1:00 PM -->
+          <button
+            id="slot-1300"
+            data-time="1:00 PM"
+            disabled
+            class="slot-booked bg-gray-200 text-gray-400 font-semibold text-sm rounded-xl px-4 py-3 cursor-not-allowed text-left"
+          >
+            <span class="block text-base line-through">
+              1:00 PM
+            </span>
+
+            <span class="text-xs font-normal">
+              Booked
+            </span>
+          </button>
+
+
+          <!-- 2:00 PM -->
+          <button
+            id="slot-1400"
+            data-time="2:00 PM"
+            class="slot-available bg-farm-green text-white font-semibold text-sm rounded-xl px-4 py-3 transition-all duration-150 text-left"
+          >
+            <span class="block text-base">
+              2:00 PM
+            </span>
+
+            <span class="text-xs text-farm-green-light/80 font-normal">
+              Available
+            </span>
+          </button>
+
+
+          <!-- 3:00 PM -->
+          <button
+            id="slot-1500"
+            data-time="3:00 PM"
+            class="slot-available bg-farm-green text-white font-semibold text-sm rounded-xl px-4 py-3 transition-all duration-150 text-left"
+          >
+            <span class="block text-base">
+              3:00 PM
+            </span>
+
+            <span class="text-xs text-farm-green-light/80 font-normal">
+              Available
+            </span>
+          </button>
+
+
+          <!-- 4:00 PM -->
+          <button
+            id="slot-1600"
+            data-time="4:00 PM"
+            class="slot-available bg-farm-green text-white font-semibold text-sm rounded-xl px-4 py-3 transition-all duration-150 text-left"
+          >
+            <span class="block text-base">
+              4:00 PM
+            </span>
+
+            <span class="text-xs text-farm-green-light/80 font-normal">
+              Available
+            </span>
+          </button>
+
+
+          <!-- 5:00 PM -->
+          <button
+            id="slot-1700"
+            data-time="5:00 PM"
+            class="slot-available bg-farm-green text-white font-semibold text-sm rounded-xl px-4 py-3 transition-all duration-150 text-left"
+          >
+            <span class="block text-base">
+              5:00 PM
+            </span>
+
+            <span class="text-xs text-farm-green-light/80 font-normal">
+              Available
+            </span>
+          </button>
+
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- ============================================================
+         CONFIRMATION AREA
+    ============================================================ -->
+
+    <div
+      id="confirmation"
+      class="hidden-init mt-6"
+      aria-live="polite"
+    >
+
+      <div class="bg-farm-green-light border border-farm-green-mid rounded-2xl px-6 py-5">
+
+        <div class="flex items-start gap-3">
+
+          <span class="text-2xl mt-0.5">
+            ✅
+          </span>
+
+          <div>
+
+            <p class="font-semibold text-farm-green text-sm mb-0.5">
+              Slot Selected
+            </p>
+
+            <p
+              id="confirmationText"
+              class="text-farm-bark text-base font-medium"
+            ></p>
+
+          </div>
+
+        </div>
+
+
+        <div class="mt-5">
+
+          <button
+            id="confirmBookingBtn"
+            class="w-full sm:w-auto bg-farm-earth text-white font-bold px-8 py-3 rounded-xl hover:bg-farm-bark transition-colors shadow-md active:scale-95 text-sm"
+          >
+            Confirm Booking →
+          </button>
+
+          <p class="text-xs text-farm-earth mt-3">
+            You'll receive an SMS confirmation once booking is confirmed.
+            You can cancel up to 2 hours before your slot.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- Back link -->
+    <div class="text-center mt-8">
+
+      <a
+        href="AgriQ.html"
+        class="text-sm text-farm-earth hover:text-farm-green transition-colors"
+      >
+        ← Back to Home
+      </a>
+
+    </div>
+
+  </main>
+
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+
+  <footer class="bg-farm-bark text-farm-cream/50 text-center text-xs py-5 mt-4">
+    © 2024 FarmConnect. All rights reserved.
+  </footer>
+
+
+  <!-- ============================================================
+       JAVASCRIPT – Slot selection logic
+  ============================================================ -->
+
+  <script>
+
+    // ── Set today's date as default ──
+
+    (function () {
+
+      var today = new Date();
+
+      var yyyy = today.getFullYear();
+
+      var mm = String(
+        today.getMonth() + 1
+      ).padStart(2, '0');
+
+      var dd = String(
+        today.getDate()
+      ).padStart(2, '0');
+
+      document.getElementById('bookingDate').value =
+        yyyy + '-' + mm + '-' + dd;
+
+    })();
+
+
+    // ── Slot selection ──
+
+    var selectedSlotId = null;
+
+    var availableSlots =
+      document.querySelectorAll('.slot-available');
+
+    var confirmation =
+      document.getElementById('confirmation');
+
+    var confirmationText =
+      document.getElementById('confirmationText');
+
+    var confirmBtn =
+      document.getElementById('confirmBookingBtn');
+
+    var dateInput =
+      document.getElementById('bookingDate');
+
+    var cropType =
+      document.getElementById('cropType');
+
+
+    // ── Format date ──
+
+    function formatDate(val) {
+
+      if (!val)
+        return 'the selected date';
+
+      var parts = val.split('-');
+
+      var d = new Date(
+        parts[0],
+        parts[1] - 1,
+        parts[2]
+      );
+
+      var options = {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      };
+
+      return d.toLocaleDateString(
+        'en-IN',
+        options
+      );
+
+    }
+
+
+    // ── Update confirmation ──
+
+    function updateConfirmation() {
+
+      if (!selectedSlotId)
+        return;
+
+      var btn =
+        document.getElementById(selectedSlotId);
+
+      var time =
+        btn.getAttribute('data-time');
+
+      var date =
+        formatDate(dateInput.value);
+
+      var crop =
+        cropType.options[
+          cropType.selectedIndex
+        ].text;
+
+      confirmationText.textContent =
+        'You selected: ' +
+        date +
+        ' — ' +
+        crop +
+        ' at ' +
+        time;
+
+    }
+
+
+    // ── Date change ──
+
+    dateInput.addEventListener(
+      'change',
+      function () {
+
+        if (selectedSlotId)
+          updateConfirmation();
+
+      }
+    );
+
+
+    // ── Crop change ──
+
+    cropType.addEventListener(
+      'change',
+      function () {
+
+        if (selectedSlotId)
+          updateConfirmation();
+
+      }
+    );
+
+
+    // ── Slot click listeners ──
+
+    availableSlots.forEach(
+      function (btn) {
+
+        btn.addEventListener(
+          'click',
+          function () {
+
+            // Check crop selection
+            if (!cropType.value) {
+
+              alert(
+                'Please select a crop first.'
+              );
+
+              cropType.focus();
+
+              return;
+            }
+
+
+            // Deselect previous slot
+
+            if (selectedSlotId) {
+
+              var prev =
+                document.getElementById(
+                  selectedSlotId
+                );
+
+              if (prev) {
+
+                prev.classList.remove(
+                  'slot-selected'
+                );
+
+              }
+
+            }
+
+
+            // Select this slot
+
+            selectedSlotId = btn.id;
+
+            btn.classList.add(
+              'slot-selected'
+            );
+
+
+            // Update confirmation
+
+            updateConfirmation();
+
+
+            // Show confirmation
+
+            confirmation.classList.remove(
+              'hidden-init'
+            );
+
+            confirmation.classList.add(
+              'visible'
+            );
+
+
+            // Scroll to confirmation
+
+            confirmation.scrollIntoView({
+              behavior: 'smooth',
+              block: 'nearest'
+            });
+
+          }
+        );
+
+      }
+    );
+
+
+    // ── Confirm booking ──
+
+    confirmBtn.addEventListener(
+      'click',
+      function () {
+
+        if (
+          !dateInput.value ||
+          !cropType.value ||
+          !selectedSlotId
+        ) {
+
+          alert(
+            'Please select a date, crop and time slot first.'
+          );
+
+          return;
+        }
+
+
+        var btn =
+          document.getElementById(
+            selectedSlotId
+          );
+
+        var time =
+          btn.getAttribute('data-time');
+
+        var crop =
+          cropType.options[
+            cropType.selectedIndex
+          ].text;
+
+
+        alert(
+          'Booking confirmed for ' +
+          crop +
+          ' on ' +
+          formatDate(dateInput.value) +
+          ' at ' +
+          time +
+          '!\n' +
+          '(SMS confirmation will be sent to your registered number.)'
+        );
+
+      }
+    );
+
+  </script>
+
+</body>
+</html>
