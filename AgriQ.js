@@ -10,9 +10,14 @@ document.getElementById("Registration").addEventListener("submit", async (e) => 
         farmerName: document.getElementById("farmerName").value,
         farmerPhone: document.getElementById("farmerPhone").value,
         farmerVillage: document.getElementById("farmerVillage").value,
+<<<<<<< HEAD
         cropType: document.getElementById("cropType").value,
         locationInput: document.getElementById("locationInput").value
 
+=======
+        cropType: document.getElementById("cropType").value
+        locationInput: document.getElementById("locationInput").value
+>>>>>>> 13610754b9bfb8432cf796f3e384a0a641a73e2f
     };
 
     console.log("Farmer data:", farmer);
@@ -29,6 +34,7 @@ document.getElementById("Registration").addEventListener("submit", async (e) => 
 
     console.log("Server response:", result);
 });
+<<<<<<< HEAD
 //To find the location
 let locatiobtn = document.getElementById("getLocationBtn");
 
@@ -74,3 +80,5 @@ locatiobtn.addEventListener("click", function () {
     }
 
 });
+=======
+>>>>>>> 13610754b9bfb8432cf796f3e384a0a641a73e2f

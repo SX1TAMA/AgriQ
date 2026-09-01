@@ -1,0 +1,21 @@
+{
+  "name": "agriq1",
+  "version": "1.0.0",
+  "description": "<<<<<<< HEAD\r # AgriQ\r This is AgriQ, a smart automation software which going to solve the problem of many farmers related to procurement \r =======\r >>>>>>> 15fe6025405f13d6bbbdfa0ecd927b9bb5d92141\r # 🌾 AgriQ",
+  "main": "user.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SX1TAMA/AgriQ.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/SX1TAMA/AgriQ/issues"
+  },
+  "homepage": "https://github.com/SX1TAMA/AgriQ#readme"
+}
