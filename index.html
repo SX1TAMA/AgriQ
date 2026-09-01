@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" 
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Farmer Procurement Portal</title>
+
+    <!-- CSS Connected -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            🌾 Smart Procurement
+        </div>
+
+        <ul class="nav-links">
+
+            <li>
+                <a href="#home">Home</a>
+            </li>
+
+            <li>
+                <a href="#register">Register</a>
+            </li>
+
+            <li>
+                <a href="#procurement">Procurement</a>
+            </li>
+
+        </ul>
+
+    </nav>
+
+
+
+    <!-- HERO SECTION -->
+
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <h1>
+                Smart Agriculture Procurement System
+            </h1>
+
+            <p>
+                Connect Farmers with Nearby Procurement Centers
+                Quickly and Easily.
+            </p>
+
+            <button onclick="scrollToRegister()">
+                Register Now
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- FARMER REGISTRATION -->
+
+    <section class="register-section" id="register">
+
+        <div class="form-container">
+
+            <h2>🌾 Farmer Registration</h2>
+
+            <p class="subtitle">
+                Enter your details to access nearby procurement services.
+            </p>
+
+
+            <form id="farmerForm">
+
+
+                <!-- NAME -->
+
+                <div class="input-group">
+
+                    <label for="farmerName">
+                        Farmer Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="farmerName"
+                        placeholder="Enter your full name"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- MOBILE -->
+
+                <div class="input-group">
+
+                    <label for="mobile">
+                        Mobile Number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="mobile"
+                        placeholder="Enter 10 digit mobile number"
+                        maxlength="10"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- CROP -->
+
+                <div class="input-group">
+
+                    <label for="crop">
+                        Select Crop
+                    </label>
+
+                    <select id="crop" required>
+
+                        <option value="">
+                            Select Crop
+                        </option>
+
+                        <option value="Rice">
+                            Rice
+                        </option>
+
+                        <option value="Wheat">
+                            Wheat
+                        </option>
+
+                        <option value="Maize">
+                            Maize
+                        </option>
+
+                        <option value="Vegetables">
+                            Vegetables
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- QUANTITY -->
+
+                <div class="input-group">
+
+                    <label for="quantity">
+                        Crop Quantity (KG)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="quantity"
+                        placeholder="Enter quantity"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- LOCATION -->
+
+                <div class="input-group">
+
+                    <label>
+                        Your Location
+                    </label>
+
+
+                    <div class="location-box">
+
+                        <input
+                            type="text"
+                            id="location"
+                            placeholder="Click Get Location"
+                            readonly
+                        >
+
+
+                        <button
+                            type="button"
+                            class="location-btn"
+                            onclick="getLocation()"
+                        >
+                            📍 Get Location
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- SUBMIT -->
+
+                <button
+                    type="submit"
+                    class="submit-btn"
+                >
+
+                    Find Nearby Procurement Center
+
+                </button>
+
+
+            </form>
+
+
+            <p id="message"></p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- PROCUREMENT RESULT -->
+
+    <section
+        class="procurement-section"
+        id="procurement"
+    >
+
+        <h2>
+            Nearby Procurement Information
+        </h2>
+
+
+        <div
+            class="result-card"
+            id="resultCard"
+        >
+
+            <h3>
+                🌾 Your Procurement Details
+            </h3>
+
+
+            <div id="result">
+
+                <p>
+                    Fill the form to find nearby procurement centers.
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+<!-- table formation -->
+
+    <table>
+
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Mobile</th>
+            <th>Crop</th>
+            <th>Quantity</th>
+            <th>Location</th>
+        </tr>
+    </thead>
+
+    <tbody id="tableBody">
+
+    </tbody>
+
+</table>
+
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            © 2026 Smart Agriculture Procurement System
+        </p>
+
+    </footer>
+
+
+
+    <!-- JavaScript Connected -->
+
+    <script src="user.js"></script>
+
+
+</body>
+
+</html>
