@@ -42,3 +42,4 @@ locatiobtn.addEventListener("click", function () {
     }
 
 });
+nyj
